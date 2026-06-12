@@ -1,0 +1,10 @@
+{
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "framework": "vite",
+  "functions": {
+    "api/groq.js":   { "maxDuration": 60 },
+    "api/ollama.js": { "maxDuration": 60 },
+    "api/paper.js":  { "maxDuration": 20 }
+  }
+}

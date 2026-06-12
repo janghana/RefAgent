@@ -1,0 +1,33 @@
+{
+  "name": "refagent",
+  "version": "0.1.0",
+  "description": "Agentic Reference Verifier — drop a PDF/TeX/DOCX and let a local LLM verify every citation",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test:e2e": "node test-e2e.mjs"
+  },
+  "dependencies": {
+    "mammoth": "^1.8.0",
+    "pdfjs-dist": "^4.7.76",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.4",
+    "vite": "^6.0.0"
+  },
+  "license": "MIT",
+  "keywords": [
+    "bibtex",
+    "citation",
+    "verifier",
+    "agent",
+    "ollama",
+    "gemma",
+    "arxiv",
+    "doi"
+  ]
+}

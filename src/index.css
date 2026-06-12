@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap');
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'IBM Plex Sans',-apple-system,sans-serif;-webkit-font-smoothing:antialiased;background:#f4f7fb;color:#1e293b;min-height:100vh;overflow:hidden}
+code,pre,.mono{font-family:'IBM Plex Mono','SF Mono',monospace}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes slideUp{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.55}}
+
+/* ═══ Full-screen drag overlay ═══ */
+.ra-drop-overlay{
+  position:fixed;inset:0;z-index:9999;
+  background:rgba(15,23,42,0.78);
+  display:flex;align-items:center;justify-content:center;
+  pointer-events:none;animation:fadeIn 0.12s ease;
+}
+.ra-drop-card{
+  background:white;border-radius:16px;padding:36px 56px;
+  box-shadow:0 20px 60px rgba(0,0,0,0.35);
+  border:2px dashed #3b82f6;text-align:center;
+  font-family:'IBM Plex Sans',sans-serif;
+}
+
+/* ═══ Verdict colors ═══ */
+.v-verified{color:#15803d;background:#dcfce7;border-color:#86efac}
+.v-suspicious{color:#a16207;background:#fef3c7;border-color:#fcd34d}
+.v-notfound{color:#b91c1c;background:#fee2e2;border-color:#fca5a5}
+.v-pending{color:#475569;background:#f1f5f9;border-color:#cbd5e1}
+
+/* ═══ PDF text layer (selectable but invisible over the canvas) ═══ */
+.pdf-text-layer {
+  position: absolute;
+  text-align: initial;
+  inset: 0;
+  overflow: hidden;
+  opacity: 0.25;             /* high enough to confirm selection, low enough to not blur the canvas */
+  line-height: 1.0;
+  text-size-adjust: none;
+  forced-color-adjust: none;
+  transform-origin: 0 0;
+  z-index: 2;
+  caret-color: CanvasText;
+}
+.pdf-text-layer :is(span, br) {
+  color: transparent;
+  position: absolute;
+  white-space: pre;
+  cursor: text;
+  transform-origin: 0% 0%;
+}
+.pdf-text-layer span.markedContent {
+  top: 0; height: 0;
+}
+.pdf-text-layer .endOfContent {
+  display: block; position: absolute;
+  inset: 100% 0 0 0;
+  z-index: -1;
+  cursor: default;
+  user-select: none;
+}
+.pdf-text-layer ::selection {
+  background: rgba(0, 100, 255, 0.30);
+}
+
+/* ═══ Mobile responsive ═══ */
+@media (max-width: 1024px) {
+  body { overflow: auto !important; }
+  #root > div { flex-direction: column !important; height: auto !important; min-height: 100vh; }
+  #root > div > div:first-child { width: 100% !important; min-width: 0 !important; height: auto !important; flex-direction: row !important; border-right: none !important; border-bottom: 1px solid #e2e8f0; overflow-x: auto; }
+  #root > div > div:nth-child(2) { flex: none !important; min-height: auto !important; overflow: visible !important; }
+  #root > div > div:nth-child(3) { flex: none !important; min-width: 0 !important; border-left: none !important; border-top: 1px solid #e2e8f0; }
+}
+
+@media (max-width: 640px) {
+  #root > div > div:first-child { padding: 8px !important; }
+  #root > div > div:nth-child(2) { padding: 12px 10px !important; }
+  #root > div > div:nth-child(3) { padding: 8px !important; }
+}
