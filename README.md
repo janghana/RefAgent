@@ -63,8 +63,8 @@ That's it. Drop a paper.
 ## Local development
 
 ```bash
-git clone <this-repo>
-cd Pjt-RefAgent
+git clone https://github.com/janghana/RefAgent.git
+cd RefAgent
 npm install
 npm run dev
 # → http://localhost:5173
